@@ -5,20 +5,21 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet"
-import { IUser } from "@/app/interfaces"
+
 import { Calendar, LayoutDashboard, List, MessageCircle, User2 } from 'lucide-react'
 import { usePathname, useRouter } from 'next/navigation'
 import Cookies from "js-cookie"
 import toast from "react-hot-toast"
+import useUserGlobalStore from '../store/user-global-store'
 
 
 interface MenuItemsProps {
   openMenuItems: boolean;
   setOpenMenuItems: (openMenuItems: boolean) => void;
-  user: IUser;
 }
 
-function MenuItems({ openMenuItems, setOpenMenuItems, user }: MenuItemsProps) {
+function MenuItems({ openMenuItems, setOpenMenuItems }: MenuItemsProps) {
+  const { user } = useUserGlobalStore();
   const pathname = usePathname();
   const router = useRouter();
 
@@ -49,7 +50,7 @@ function MenuItems({ openMenuItems, setOpenMenuItems, user }: MenuItemsProps) {
     { title: "Profile", route: "/user/profile", icon: <User2 size={13} /> },
   ];
 
-  const menuItemsToRender = user.role === 'user' ? userMenuItems : salonSpaOwnerMenuItems;
+  const menuItemsToRender = user?.role === 'user' ? userMenuItems : salonSpaOwnerMenuItems;
 
   return (
     <Sheet open={openMenuItems} onOpenChange={setOpenMenuItems}>

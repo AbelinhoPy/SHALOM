@@ -2,11 +2,14 @@ import React from 'react'
 import Header from './header'
 import Cookies from 'js-cookie'
 import { getCurrentUser } from '../action/user';
+import Loader from '@/components/ui/loader';
+import ErrorMessage from '@/components/ui/error-message';
+import useUserGlobalStore from '../store/user-global-store';
 
 function PrivateLayout({children}: { children: React.ReactNode }) {
-    const [user = null, setUser] = React.useState(null);
+    const { user, setUser } = useUserGlobalStore();
     const [loading, setLoading] = React.useState(false);
-    const [error, setError] = React.useState(null);
+    const [error, setError] = React.useState<string | null>(null);
 
     const fetchUser = async () => {
         try {
@@ -30,22 +33,20 @@ function PrivateLayout({children}: { children: React.ReactNode }) {
     }, []);
 
     if (loading) {
-        return (<div className="flex items-center justify-center h-screem">
-             <loader />
+        return (<div className="flex items-center justify-center h-screen">
+             <Loader />
             </div>
             );
     }
 
     if (error) {
-        return <div>
-             {error}
-            </div>
+        return <ErrorMessage error={error} />;
     
     }
 
   return (
     <div>
-        <Header user={user}/>
+        <Header />
         <div className= "p-5">{children}</div>
     </div>
   );

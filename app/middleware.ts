@@ -8,7 +8,10 @@ export function middleware(request: NextRequest) {
     const route = request.nextUrl.pathname
     const token = request.cookies.get('token')?.value
 
-    const isPrivateRoute = route.startsWith('/user') || route.startsWith('/salon-spa-owner') 
+    const isPrivateRoute = 
+      route.startsWith('/user') || 
+      route.startsWith('/salon-spa-owner') || 
+      route.startsWith('/admin') 
     //is the route is private , but the user is not authenticated then redirect to login page
     if (isPrivateRoute && !token) {
         return NextResponse.redirect(new URL('/login', request.url))

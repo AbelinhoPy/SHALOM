@@ -1,9 +1,9 @@
 import React from 'react'
 
-function loader() {
+function Loader() {
   return (
-    <div>loader</div>
+    <div className='h-10 w-10  border-primary border-t-gray-300 border-8 rounded-full animate-spin'></div>
   )
 }
 
-export default loader
+export default Loader

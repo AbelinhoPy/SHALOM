@@ -10,8 +10,8 @@ const playfairDisplayHeading = Playfair_Display({subsets:['latin'],variable:'--f
 const notoSans = Noto_Sans({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
-  title: "Shey Salon & Spa(Dev)",
-  description: "Modern salon and spa finder in your town",
+  title: "Jahuga | Reservá tu Cancha y Turno en Paraguay",
+  description: "Plataforma de reservas de canchas de fútbol sintético, pádel, vóley y salones con seña online en Paraguay.",
 };
 
 export default function RootLayout({
